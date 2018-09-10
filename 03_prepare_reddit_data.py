@@ -92,17 +92,10 @@ for subgroup in subgroups:
             230000 - df_sub.shape[0], random_state=24)])
 df_train = pd.concat(dfs)
 
-df['labeled_data'] = '__label__' + df['subgroup'] + ' ' + df['clean_version']
-df_train['labeled_data'] = '__label__' + \
-    df_train['subgroup'] + ' ' + df_train['clean_version']
-df_test['labeled_data'] = '__label__' + \
-    df_test['subgroup'] + ' ' + df_test['clean_version']
+
 df = df.sample(frac=1.0, random_state=24)
 df_train = df_train.sample(frac=1.0, random_state=24)
 
-df.labeled_data.to_csv(
-    '/scratch/en919/FINAL_DATA/data_all_grouped.txt', encoding='utf-8', index=False)
-df_train.labeled_data.to_csv(
-    '/scratch/en919/FINAL_DATA/data_train_grouped.txt', encoding='utf-8', index=False)
-df_test.labeled_data.to_csv(
-    '/scratch/en919/FINAL_DATA/data_test_grouped.txt', encoding='utf-8', index=False)
+df.to_csv('/scratch/en919/FINAL_DATA/data_all.csv', index=False)
+df_train.to_csv('/scratch/en919/FINAL_DATA/data_train.csv', index=False)
+df_test.to_csv('/scratch/en919/FINAL_DATA/data_test.csv', index=False)
